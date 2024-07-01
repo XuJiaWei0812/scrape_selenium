@@ -47,21 +47,28 @@ def fetch_detail_urls(driver,url):
 def fetch_detail_data(driver, url):
     try:
         driver.get(url)
-        time.sleep(random.uniform(1, 3)) 
+        time.sleep(random.uniform(2, 4))
+        
         detail_data = []
+        
         # 名稱
         name = driver.find_element(By.XPATH, '//*[@id="detail"]/div[1]/div/div/div[1]/div/div[2]/a/h2').text
         detail_data.append(name)
+        
         # 評分
         score = driver.find_element(By.CLASS_NAME, 'score').text
         detail_data.append(score)
+        
         # 時長
         minute = driver.find_element(By.XPATH, '//*[@id="detail"]/div[1]/div/div/div[1]/div/div[2]/div[2]/span[3]').text
         detail_data.append(minute)
+        
         # 簡介
         drama = driver.find_element(By.XPATH, '//*[@id="detail"]/div[1]/div/div/div[1]/div/div[2]/div[4]/p').text
         detail_data.append(drama)
-        time.sleep(random.uniform(1, 3))  
+        
+        time.sleep(random.uniform(3, 5)) 
+          
         return detail_data
     except Exception as e:
         error_line = sys.exc_info()[-1].tb_lineno
